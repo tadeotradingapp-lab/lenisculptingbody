@@ -14,8 +14,10 @@ import { results } from "@/data/results";
 import { reviews } from "@/data/reviews";
 import { business } from "@/data/business";
 import { isOpenNow, buildWhatsAppUrl, buildCallUrl, getDirectionsUrl } from "@/lib/whatsapp";
-import { MapPin, MessageCircle, Phone, ArrowRight, Star, Sparkles, Clock, CheckCircle2, HelpCircle } from "lucide-react";
+import { MapPin, MessageCircle, Phone, ArrowRight, Star, Sparkles, Clock, HelpCircle } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { useInView } from "@/hooks/useInView";
+import heroImg from "@/assets/hero-spa.jpg";
 
 const objectives = [
   { key: "reduccion" as const, label: "Reducción", icon: "🔥" },
@@ -33,6 +35,15 @@ const faqs = [
   { q: "¿Cuántas sesiones necesito para ver resultados?", a: "Varía según el tratamiento y cada persona. Generalmente entre 4 y 8 sesiones." },
 ];
 
+function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const { ref, isInView } = useInView();
+  return (
+    <div ref={ref} className={`transition-all duration-700 ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"} ${className}`}>
+      {children}
+    </div>
+  );
+}
+
 export default function Index() {
   const popular = services.filter(s => s.popular).slice(0, 6);
   const featuredPromos = promos.filter(p => p.featured).slice(0, 3);
@@ -45,36 +56,49 @@ export default function Index() {
   return (
     <Layout>
       {/* Hero */}
-      <section className="relative bg-gradient-to-b from-secondary/50 to-background">
-        <div className="container py-12 md:py-20">
-          <div className="max-w-2xl mx-auto text-center md:text-left md:mx-0">
-            <h1 className="font-display font-bold text-3xl md:text-5xl text-foreground leading-tight">
-              Tratamientos corporales y faciales personalizados en Hollywood, FL.
-            </h1>
-            <p className="text-muted-foreground mt-4 text-base md:text-lg">
-              Envía tu solicitud de cita en minutos. Te confirmamos por WhatsApp.
-            </p>
-            <div className="flex flex-wrap gap-3 mt-6 justify-center md:justify-start">
-              <Link to="/reservar" className="inline-flex items-center gap-2 h-12 px-8 rounded-full bg-primary text-primary-foreground font-display font-semibold shadow-glow hover:bg-primary/90 transition-colors">
-                Solicitar cita <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link to="/promos" className="inline-flex items-center gap-2 h-12 px-8 rounded-full border-2 border-primary text-primary font-display font-semibold hover:bg-primary/5 transition-colors">
-                Ver promociones
-              </Link>
+      <section className="relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute inset-0 bg-gradient-to-br from-secondary/60 via-background to-primary/5" />
+        <div className="absolute top-20 right-10 w-72 h-72 rounded-full bg-primary/10 blur-3xl" />
+        <div className="absolute bottom-10 left-10 w-48 h-48 rounded-full bg-secondary blur-2xl" />
+
+        <div className="container relative py-16 md:py-24">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div className="text-center md:text-left">
+              <h1 className="font-display font-bold text-3xl md:text-5xl leading-tight text-gradient-primary">
+                Tratamientos corporales y faciales personalizados en Hollywood, FL.
+              </h1>
+              <p className="text-muted-foreground mt-4 text-base md:text-lg leading-relaxed">
+                Envía tu solicitud de cita en minutos. Te confirmamos por WhatsApp.
+              </p>
+              <div className="flex flex-wrap gap-3 mt-8 justify-center md:justify-start">
+                <Link to="/reservar" className="inline-flex items-center gap-2 h-12 px-8 rounded-full bg-primary text-primary-foreground font-display font-semibold shadow-glow hover:bg-primary/90 transition-all active:scale-[0.98]">
+                  Solicitar cita <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link to="/promos" className="inline-flex items-center gap-2 h-12 px-8 rounded-full border-2 border-primary text-primary font-display font-semibold hover:bg-primary/5 transition-colors active:scale-[0.98]">
+                  Ver promociones
+                </Link>
+              </div>
+              <div className="flex flex-wrap gap-2 mt-6 justify-center md:justify-start">
+                <Chip variant="primary"><MapPin className="w-3 h-3" /> Hollywood, FL</Chip>
+                <Chip variant="primary">Atención en español</Chip>
+                <Chip variant="primary"><Clock className="w-3 h-3" /> Solicitud rápida</Chip>
+                <Chip variant="primary"><Star className="w-3 h-3" /> Resultados reales</Chip>
+              </div>
             </div>
-            <div className="flex flex-wrap gap-2 mt-6 justify-center md:justify-start">
-              <Chip variant="primary"><MapPin className="w-3 h-3" /> Hollywood, FL</Chip>
-              <Chip variant="primary">Atención en español</Chip>
-              <Chip variant="primary"><Clock className="w-3 h-3" /> Solicitud rápida</Chip>
-              <Chip variant="primary"><Star className="w-3 h-3" /> Resultados reales</Chip>
+            <div className="hidden md:block">
+              <div className="relative">
+                <div className="absolute inset-0 bg-primary/20 rounded-3xl rotate-3 scale-105" />
+                <img src={heroImg} alt="Leni Sculpting Body - tratamientos premium" className="relative rounded-3xl shadow-elevated object-cover w-full aspect-[4/3]" />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Recomendador teaser */}
-      <section className="container py-8">
-        <Link to="/recomendador" className="block bg-gradient-to-r from-primary/10 via-secondary to-primary/5 rounded-2xl p-6 border border-primary/20 hover:shadow-card transition-all">
+      <AnimatedSection className="container py-10">
+        <Link to="/recomendador" className="block bg-gradient-to-r from-primary/10 via-secondary to-primary/5 rounded-2xl p-6 border border-primary/20 hover:shadow-card transition-all active:scale-[0.99]">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
               <Sparkles className="w-6 h-6 text-primary" />
@@ -86,92 +110,101 @@ export default function Index() {
             <ArrowRight className="w-5 h-5 text-primary flex-shrink-0" />
           </div>
         </Link>
-      </section>
+      </AnimatedSection>
 
       {/* Promos destacadas */}
-      <section className="container py-8">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="font-display font-bold text-xl md:text-2xl text-foreground">Promociones destacadas</h2>
+      <AnimatedSection className="container py-12">
+        <div className="flex items-center justify-between mb-8">
+          <h2 className="section-heading">Promociones destacadas</h2>
           <Link to="/promos" className="text-primary text-sm font-medium flex items-center gap-1">Ver todas <ArrowRight className="w-3.5 h-3.5" /></Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {featuredPromos.map(p => <PromoCard key={p.id} promo={p} />)}
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Objetivos */}
-      <section className="container py-8">
-        <h2 className="font-display font-bold text-xl md:text-2xl text-foreground mb-6">¿Cuál es tu objetivo?</h2>
-        <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
-          {objectives.map(o => <ObjectiveCard key={o.key} objective={o.key} label={o.label} icon={o.icon} />)}
-        </div>
+      <section className="bg-secondary/20 py-12">
+        <AnimatedSection className="container">
+          <h2 className="section-heading mb-8">¿Cuál es tu objetivo?</h2>
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
+            {objectives.map(o => <ObjectiveCard key={o.key} objective={o.key} label={o.label} icon={o.icon} />)}
+          </div>
+        </AnimatedSection>
       </section>
 
       {/* Servicios populares */}
-      <section className="container py-8">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="font-display font-bold text-xl md:text-2xl text-foreground">Servicios populares</h2>
+      <AnimatedSection className="container py-12">
+        <div className="flex items-center justify-between mb-8">
+          <h2 className="section-heading">Servicios populares</h2>
           <Link to="/servicios" className="text-primary text-sm font-medium flex items-center gap-1">Ver todos <ArrowRight className="w-3.5 h-3.5" /></Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {popular.map(s => <ServiceCard key={s.id} service={s} />)}
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Paquetes */}
-      <section className="container py-8">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="font-display font-bold text-xl md:text-2xl text-foreground">Paquetes de sesiones</h2>
-          <Link to="/paquetes" className="text-primary text-sm font-medium flex items-center gap-1">Ver todos <ArrowRight className="w-3.5 h-3.5" /></Link>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {featuredPackages.map(pkg => <PackageCard key={pkg.id} pkg={pkg} />)}
-        </div>
+      <section className="bg-secondary/20 py-12">
+        <AnimatedSection className="container">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="section-heading">Paquetes de sesiones</h2>
+            <Link to="/paquetes" className="text-primary text-sm font-medium flex items-center gap-1">Ver todos <ArrowRight className="w-3.5 h-3.5" /></Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {featuredPackages.map((pkg, i) => <PackageCard key={pkg.id} pkg={pkg} featured={i === 1} />)}
+          </div>
+        </AnimatedSection>
       </section>
 
       {/* Resultados */}
-      <section className="container py-8">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="font-display font-bold text-xl md:text-2xl text-foreground">Resultados reales</h2>
+      <AnimatedSection className="container py-12">
+        <div className="flex items-center justify-between mb-8">
+          <h2 className="section-heading">Resultados reales</h2>
           <Link to="/resultados" className="text-primary text-sm font-medium flex items-center gap-1">Ver todos <ArrowRight className="w-3.5 h-3.5" /></Link>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {featuredResults.map(r => (
-            <div key={r.id} className="rounded-2xl overflow-hidden bg-muted aspect-square">
+            <div key={r.id} className="rounded-2xl overflow-hidden bg-muted aspect-square group relative">
               {r.type === "beforeAfter" ? (
                 <BeforeAfterSlider beforeUrl={r.beforeUrl} afterUrl={r.afterUrl} className="w-full h-full" />
               ) : (
                 <img src={r.imageUrl} alt={r.serviceName} className="w-full h-full object-cover" loading="lazy" />
               )}
+              <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/20 transition-colors flex items-center justify-center">
+                <span className="opacity-0 group-hover:opacity-100 transition-opacity text-background font-display font-semibold text-sm bg-foreground/60 px-4 py-2 rounded-full">Ver detalle</span>
+              </div>
             </div>
           ))}
         </div>
         <p className="text-xs text-muted-foreground text-center mt-3">Resultados pueden variar según cada persona.</p>
-      </section>
+      </AnimatedSection>
 
       {/* Reseñas */}
-      <section className="container py-8">
-        <div className="flex items-center justify-between mb-6">
-          <div>
-            <h2 className="font-display font-bold text-xl md:text-2xl text-foreground">Lo que dicen nuestras clientas</h2>
-            <div className="flex items-center gap-2 mt-1">
-              <div className="flex items-center gap-0.5">
-                {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="w-4 h-4 fill-warning text-warning" />)}
+      <section className="bg-secondary/20 py-12">
+        <AnimatedSection className="container">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="section-heading">Lo que dicen nuestras clientas</h2>
+              <div className="flex items-center gap-2 mt-4">
+                <div className="flex items-center gap-0.5">
+                  {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="w-4 h-4 fill-warning text-warning" />)}
+                </div>
+                <span className="text-sm font-semibold text-foreground">{avgRating}</span>
+                <span className="text-sm text-muted-foreground">({reviews.length} reseñas)</span>
               </div>
-              <span className="text-sm font-semibold text-foreground">{avgRating}</span>
-              <span className="text-sm text-muted-foreground">({reviews.length} reseñas)</span>
             </div>
+            <Link to="/resenas" className="text-primary text-sm font-medium flex items-center gap-1">Ver todas <ArrowRight className="w-3.5 h-3.5" /></Link>
           </div>
-          <Link to="/resenas" className="text-primary text-sm font-medium flex items-center gap-1">Ver todas <ArrowRight className="w-3.5 h-3.5" /></Link>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {featuredReviews.map(r => <ReviewCard key={r.id} review={r} />)}
-        </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {featuredReviews.map(r => <ReviewCard key={r.id} review={r} />)}
+          </div>
+        </AnimatedSection>
       </section>
 
       {/* Ubicación */}
-      <section className="container py-8">
-        <h2 className="font-display font-bold text-xl md:text-2xl text-foreground mb-6">Nuestra ubicación</h2>
+      <AnimatedSection className="container py-12">
+        <h2 className="section-heading mb-8">Nuestra ubicación</h2>
         <div className="bg-card rounded-2xl border border-border p-6">
           <div className="flex flex-col md:flex-row gap-6">
             <div className="flex-1">
@@ -196,52 +229,54 @@ export default function Index() {
             </div>
           </div>
           <div className="flex flex-wrap gap-3 mt-6">
-            <a href={getDirectionsUrl()} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 h-11 px-6 rounded-full bg-foreground text-background font-medium text-sm hover:bg-foreground/90 transition-colors">
+            <a href={getDirectionsUrl()} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 h-11 px-6 rounded-full bg-foreground text-background font-medium text-sm hover:bg-foreground/90 transition-colors active:scale-[0.98]">
               <MapPin className="w-4 h-4" /> Cómo llegar
             </a>
-            <a href={buildWhatsAppUrl("Hola, quiero información.")} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 h-11 px-6 rounded-full bg-success text-success-foreground font-medium text-sm hover:bg-success/90 transition-colors">
+            <a href={buildWhatsAppUrl("Hola, quiero información.")} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 h-11 px-6 rounded-full bg-success text-success-foreground font-medium text-sm hover:bg-success/90 transition-colors active:scale-[0.98]">
               <MessageCircle className="w-4 h-4" /> WhatsApp
             </a>
-            <a href={buildCallUrl()} className="inline-flex items-center gap-2 h-11 px-6 rounded-full border border-border font-medium text-sm hover:bg-muted transition-colors">
+            <a href={buildCallUrl()} className="inline-flex items-center gap-2 h-11 px-6 rounded-full border border-border font-medium text-sm hover:bg-muted transition-colors active:scale-[0.98]">
               <Phone className="w-4 h-4" /> Llamar
             </a>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Cómo trabajamos */}
-      <section className="container py-8">
-        <h2 className="font-display font-bold text-xl md:text-2xl text-foreground mb-6 text-center">Cómo trabajamos</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
-          {[
-            { step: "1", title: "Solicitas tu cita", desc: "Elige servicio, fecha y hora desde la web." },
-            { step: "2", title: "Te confirmamos por WhatsApp", desc: "Revisamos disponibilidad y te confirmamos rápidamente." },
-            { step: "3", title: "Protocolo personalizado", desc: "Cada tratamiento se adapta a tus necesidades." },
-          ].map(s => (
-            <div key={s.step} className="text-center">
-              <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground font-display font-bold text-lg flex items-center justify-center mx-auto">{s.step}</div>
-              <h3 className="font-display font-semibold mt-3 text-foreground">{s.title}</h3>
-              <p className="text-sm text-muted-foreground mt-1">{s.desc}</p>
-            </div>
-          ))}
-        </div>
+      <section className="bg-secondary/20 py-12">
+        <AnimatedSection className="container">
+          <h2 className="section-heading mx-auto text-center block mb-10">Cómo trabajamos</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
+            {[
+              { step: "1", title: "Solicitas tu cita", desc: "Elige servicio, fecha y hora desde la web." },
+              { step: "2", title: "Te confirmamos por WhatsApp", desc: "Revisamos disponibilidad y te confirmamos rápidamente." },
+              { step: "3", title: "Protocolo personalizado", desc: "Cada tratamiento se adapta a tus necesidades." },
+            ].map(s => (
+              <div key={s.step} className="text-center">
+                <div className="w-14 h-14 rounded-full bg-primary text-primary-foreground font-display font-bold text-xl flex items-center justify-center mx-auto shadow-glow">{s.step}</div>
+                <h3 className="font-display font-semibold mt-4 text-foreground">{s.title}</h3>
+                <p className="text-sm text-muted-foreground mt-1.5 leading-relaxed">{s.desc}</p>
+              </div>
+            ))}
+          </div>
+        </AnimatedSection>
       </section>
 
       {/* FAQ */}
-      <section className="container py-8 mb-8">
-        <h2 className="font-display font-bold text-xl md:text-2xl text-foreground mb-6">Preguntas frecuentes</h2>
+      <AnimatedSection className="container py-12 mb-8">
+        <h2 className="section-heading mb-8">Preguntas frecuentes</h2>
         <div className="max-w-2xl">
           <Accordion type="single" collapsible>
             {faqs.map((f, i) => (
               <AccordionItem key={i} value={`faq-${i}`}>
                 <AccordionTrigger className="text-left font-medium text-sm">{f.q}</AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground">{f.a}</AccordionContent>
+                <AccordionContent className="text-sm text-muted-foreground leading-relaxed">{f.a}</AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
           <Link to="/faq" className="inline-flex items-center gap-1 text-primary text-sm font-medium mt-4"><HelpCircle className="w-3.5 h-3.5" /> Ver todas las preguntas</Link>
         </div>
-      </section>
+      </AnimatedSection>
     </Layout>
   );
 }

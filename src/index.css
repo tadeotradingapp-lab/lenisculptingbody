@@ -15,6 +15,7 @@
 
     --primary: 330 100% 65%;
     --primary-foreground: 0 0% 100%;
+    --primary-dark: 330 80% 45%;
 
     --secondary: 330 58% 91%;
     --secondary-foreground: 0 0% 7%;
@@ -54,6 +55,10 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   * {
     @apply border-border;
   }
@@ -81,5 +86,45 @@
 
   .safe-top {
     padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  .text-gradient-primary {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-dark)));
+  }
+
+  .section-heading {
+    @apply font-display font-bold text-xl md:text-2xl text-foreground relative inline-block;
+  }
+
+  .section-heading::after {
+    content: '';
+    @apply absolute -bottom-2 left-0 w-10 h-0.5 bg-primary rounded-full;
+  }
+
+  .animate-in {
+    animation: fadeSlideIn 0.6s ease-out both;
+  }
+
+  @keyframes fadeSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  .skeleton-shimmer {
+    background: linear-gradient(90deg, hsl(var(--muted)) 25%, hsl(var(--muted-foreground) / 0.05) 50%, hsl(var(--muted)) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
   }
 }
