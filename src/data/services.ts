@@ -1,4 +1,10 @@
 import { Service } from "@/types";
+import imgMaderoterapia from "@/assets/services/corporal-maderoterapia.jpg";
+import imgMasaje from "@/assets/services/corporal-masaje.jpg";
+import imgDrenaje from "@/assets/services/corporal-drenaje.jpg";
+import imgFacial from "@/assets/services/facial-limpieza.jpg";
+import imgDermaplaning from "@/assets/services/facial-dermaplaning.jpg";
+import imgAparatologia from "@/assets/services/aparatologia.jpg";
 
 export const services: Service[] = [
   {
@@ -10,7 +16,7 @@ export const services: Service[] = [
     recommendations: ["Ideal para reducción localizada", "Se recomienda plan de 8-12 sesiones"],
     aftercare: ["Hidratación abundante", "Evitar comidas pesadas 2h antes", "Usar faja post-tratamiento si se indica"],
     faq: [{ q: "¿Es dolorosa?", a: "Puede generar molestia leve las primeras sesiones que disminuye progresivamente." }, { q: "¿Cada cuánto?", a: "Se recomienda 2-3 veces por semana." }],
-    imageUrl: "/placeholder.svg", popular: true,
+    imageUrl: imgMaderoterapia, popular: true,
   },
   {
     id: "s2", slug: "masaje-reductivo", name: "Masaje Reductivo", category: "corporal",
@@ -21,7 +27,7 @@ export const services: Service[] = [
     recommendations: ["Complementar con aparatología para mejores resultados"],
     aftercare: ["Tomar 2L de agua al día", "Dieta balanceada"],
     faq: [{ q: "¿Cuántas sesiones necesito?", a: "Mínimo 6, ideal 12 para resultados visibles." }],
-    imageUrl: "/placeholder.svg", popular: true,
+    imageUrl: imgMasaje, popular: true,
   },
   {
     id: "s3", slug: "drenaje-linfatico", name: "Drenaje Linfático", category: "corporal",
@@ -32,7 +38,7 @@ export const services: Service[] = [
     recommendations: ["Post-quirúrgico", "Retención de líquidos", "Piernas pesadas"],
     aftercare: ["Evitar sal en exceso", "Caminar 20 min después"],
     faq: [{ q: "¿Sirve post-cirugía?", a: "Sí, es uno de los tratamientos más indicados post-operatorio." }],
-    imageUrl: "/placeholder.svg", popular: true,
+    imageUrl: imgDrenaje, popular: true,
   },
   {
     id: "s4", slug: "cavitacion", name: "Cavitación", category: "corporal",
@@ -43,7 +49,7 @@ export const services: Service[] = [
     recommendations: ["Combinar con radiofrecuencia", "Ideal para abdomen y flancos"],
     aftercare: ["Ejercicio cardiovascular post-sesión", "Hidratación"],
     faq: [{ q: "¿Tiene contraindicaciones?", a: "No se aplica en embarazo, marcapasos o implantes metálicos en la zona." }],
-    imageUrl: "/placeholder.svg", popular: true,
+    imageUrl: imgAparatologia, popular: true,
   },
   {
     id: "s5", slug: "radiofrecuencia-corporal", name: "Radiofrecuencia Corporal", category: "corporal",
@@ -54,7 +60,7 @@ export const services: Service[] = [
     recommendations: ["Flacidez post-pérdida de peso", "Celulitis grado 2-3"],
     aftercare: ["Protección solar en zona tratada", "Hidratación"],
     faq: [{ q: "¿Es permanente?", a: "Con mantenimiento mensual se sostienen los resultados." }],
-    imageUrl: "/placeholder.svg",
+    imageUrl: imgAparatologia,
   },
   {
     id: "s6", slug: "vacuumterapia", name: "Vacuumterapia", category: "corporal",
@@ -65,7 +71,7 @@ export const services: Service[] = [
     recommendations: ["Glúteos", "Muslos", "Celulitis localizada"],
     aftercare: ["Pueden aparecer marcas leves temporales", "Hidratación"],
     faq: [{ q: "¿Duelen las marcas?", a: "Son temporales (2-3 días) y no duelen." }],
-    imageUrl: "/placeholder.svg",
+    imageUrl: imgMasaje,
   },
   {
     id: "s7", slug: "lipolaser", name: "Lipoláser", category: "corporal",
@@ -76,7 +82,7 @@ export const services: Service[] = [
     recommendations: ["Abdomen", "Brazos", "Papada"],
     aftercare: ["Ejercicio post-sesión", "Hidratación abundante"],
     faq: [{ q: "¿Es lo mismo que liposucción?", a: "No, es un procedimiento externo no invasivo." }],
-    imageUrl: "/placeholder.svg",
+    imageUrl: imgAparatologia,
   },
   {
     id: "s8", slug: "yesoterapia", name: "Yesoterapia", category: "corporal",
@@ -87,7 +93,7 @@ export const services: Service[] = [
     recommendations: ["Evento próximo", "Reducción express"],
     aftercare: ["No mojar la zona por 8h", "Hidratación"],
     faq: [{ q: "¿Cuántos cm se pueden perder?", a: "Entre 1-3 cm por sesión dependiendo de cada persona." }],
-    imageUrl: "/placeholder.svg",
+    imageUrl: imgDrenaje,
   },
   {
     id: "s9", slug: "exfoliacion-corporal", name: "Exfoliación Corporal", category: "corporal",
@@ -98,7 +104,7 @@ export const services: Service[] = [
     recommendations: ["Antes de un tratamiento corporal", "Piel opaca"],
     aftercare: ["Protección solar", "Hidratación diaria"],
     faq: [{ q: "¿Cada cuánto hacerla?", a: "Cada 2-4 semanas." }],
-    imageUrl: "/placeholder.svg",
+    imageUrl: imgMasaje,
   },
   {
     id: "s10", slug: "manta-termica", name: "Manta Térmica", category: "corporal",
@@ -109,7 +115,7 @@ export const services: Service[] = [
     recommendations: ["Complemento de masaje reductivo", "Detox"],
     aftercare: ["Hidratación abundante", "Descanso"],
     faq: [{ q: "¿Cuántas calorías quema?", a: "Varía por persona. No es sustituto de ejercicio." }],
-    imageUrl: "/placeholder.svg",
+    imageUrl: imgDrenaje,
   },
   {
     id: "s11", slug: "detox-ionica-pies", name: "Detox Iónica de Pies", category: "corporal",
@@ -120,7 +126,7 @@ export const services: Service[] = [
     recommendations: ["Cansancio crónico", "Retención", "Complemento"],
     aftercare: ["Hidratación", "Evitar alcohol 24h"],
     faq: [{ q: "¿El color del agua indica algo?", a: "El cambio de color se debe a la reacción iónica." }],
-    imageUrl: "/placeholder.svg",
+    imageUrl: imgDrenaje,
   },
   {
     id: "s12", slug: "limpieza-facial-profunda", name: "Limpieza Facial Profunda", category: "facial",
@@ -131,7 +137,7 @@ export const services: Service[] = [
     recommendations: ["Piel grasa", "Puntos negros", "Mantenimiento mensual"],
     aftercare: ["Protección solar", "No maquillaje por 12h", "Hidratación ligera"],
     faq: [{ q: "¿Cada cuánto?", a: "Cada 4-6 semanas ideal." }],
-    imageUrl: "/placeholder.svg", popular: true,
+    imageUrl: imgFacial, popular: true,
   },
   {
     id: "s13", slug: "facial-detox", name: "Facial Detox", category: "facial",
@@ -142,7 +148,7 @@ export const services: Service[] = [
     recommendations: ["Piel cansada", "Estrés", "Polución urbana"],
     aftercare: ["Protección solar", "Hidratación"],
     faq: [{ q: "¿Se puede hacer con acné?", a: "Sí, ayuda a descongestionar. Consultar previamente." }],
-    imageUrl: "/placeholder.svg",
+    imageUrl: imgFacial,
   },
   {
     id: "s14", slug: "dermaplaning", name: "Dermaplaning", category: "facial",
@@ -153,7 +159,7 @@ export const services: Service[] = [
     recommendations: ["Piel opaca", "Textura irregular", "Pre-evento"],
     aftercare: ["Protección solar obligatoria", "No retinol por 48h"],
     faq: [{ q: "¿El vello crece más grueso?", a: "No, es un mito. El vello vuelve igual." }],
-    imageUrl: "/placeholder.svg",
+    imageUrl: imgDermaplaning,
   },
   {
     id: "s15", slug: "microdermoabrasion", name: "Microdermoabrasión", category: "facial",
@@ -164,7 +170,7 @@ export const services: Service[] = [
     recommendations: ["Manchas superficiales", "Textura irregular"],
     aftercare: ["Protección solar estricta", "No exfoliantes por 1 semana"],
     faq: [{ q: "¿Cuántas sesiones?", a: "4-6 sesiones cada 2-3 semanas." }],
-    imageUrl: "/placeholder.svg",
+    imageUrl: imgDermaplaning,
   },
   {
     id: "s16", slug: "prp-dermapen", name: "PRP + Dermapen", category: "facial",
@@ -175,7 +181,7 @@ export const services: Service[] = [
     recommendations: ["Anti-edad", "Cicatrices de acné", "Piel desvitalizada"],
     aftercare: ["No maquillaje 24h", "Protección solar", "No ejercicio intenso 24h"],
     faq: [{ q: "¿Es doloroso?", a: "Se aplica anestesia tópica. Molestia mínima." }],
-    imageUrl: "/placeholder.svg", popular: true,
+    imageUrl: imgFacial, popular: true,
   },
   {
     id: "s17", slug: "vapor-de-ozono", name: "Vapor de Ozono", category: "addon",
@@ -186,7 +192,7 @@ export const services: Service[] = [
     recommendations: ["Agregar a cualquier facial"],
     aftercare: ["Continuar con tratamiento principal"],
     faq: [{ q: "¿Se usa solo?", a: "Se recomienda como complemento de faciales." }],
-    imageUrl: "/placeholder.svg",
+    imageUrl: imgFacial,
   },
   {
     id: "s18", slug: "alta-frecuencia", name: "Alta Frecuencia", category: "addon",
@@ -197,7 +203,7 @@ export const services: Service[] = [
     recommendations: ["Post-extracción", "Piel acneica"],
     aftercare: ["Seguir indicaciones del facial principal"],
     faq: [{ q: "¿Duele?", a: "No, se siente un ligero cosquilleo." }],
-    imageUrl: "/placeholder.svg",
+    imageUrl: imgAparatologia,
   },
   {
     id: "s19", slug: "aparatologia-combo", name: "Aparatología (RF + Cavitación + Vacuum)", category: "combo",
@@ -208,6 +214,6 @@ export const services: Service[] = [
     recommendations: ["Reducción acelerada", "Celulitis + flacidez"],
     aftercare: ["Ejercicio post-sesión", "Hidratación abundante", "Dieta balanceada"],
     faq: [{ q: "¿Es mejor que por separado?", a: "La combinación potencia los resultados de cada tecnología." }],
-    imageUrl: "/placeholder.svg", popular: true,
+    imageUrl: imgAparatologia, popular: true,
   },
 ];

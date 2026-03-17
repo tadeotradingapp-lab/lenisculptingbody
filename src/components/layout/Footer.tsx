@@ -1,15 +1,20 @@
 import { Link } from "react-router-dom";
+import { Instagram } from "lucide-react";
 import { business } from "@/data/business";
+import logoImg from "@/assets/logo-lsb.png";
 
 export function Footer() {
   return (
-    <footer className="hidden md:block bg-foreground text-background py-12 mt-16">
+    <footer className="hidden md:block bg-gradient-to-b from-foreground to-foreground/95 text-background py-12 mt-16">
       <div className="container">
         <div className="grid grid-cols-4 gap-8">
           <div>
-            <span className="font-accent text-2xl text-primary">Leni</span>
-            <span className="font-display font-semibold ml-1">Sculpting Body</span>
-            <p className="text-sm text-background/60 mt-3">Tratamientos corporales y faciales personalizados en Hollywood, FL.</p>
+            <div className="flex items-center gap-2 mb-3">
+              <img src={logoImg} alt="" className="h-8 w-auto invert" />
+              <span className="font-accent text-2xl text-primary">Leni</span>
+              <span className="font-display font-semibold">Sculpting Body</span>
+            </div>
+            <p className="text-sm text-background/60">Tratamientos corporales y faciales personalizados en Hollywood, FL.</p>
           </div>
           <div>
             <h4 className="font-display font-semibold mb-3 text-sm">Explorar</h4>
@@ -36,7 +41,9 @@ export function Footer() {
               <p>{business.address}</p>
               <p>{business.city}, {business.state} {business.zip}</p>
               <p>{business.phone}</p>
-              <a href={business.instagramUrl} target="_blank" rel="noopener noreferrer" className="hover:text-background transition-colors">{business.instagram}</a>
+              <a href={business.instagramUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 hover:text-background transition-colors">
+                <Instagram className="w-4 h-4" /> {business.instagram}
+              </a>
             </div>
           </div>
         </div>
