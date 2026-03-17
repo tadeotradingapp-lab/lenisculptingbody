@@ -1,0 +1,40 @@
+import { Package } from "@/types";
+
+export const packages: Package[] = [
+  {
+    id: "pk1", slug: "plan-esencial-6",
+    title: "Plan Esencial",
+    sessionsCount: 6,
+    priceDisplay: "Consultar precio",
+    savingsDisplay: "Ahorras hasta un 15%",
+    includes: ["6 sesiones del servicio elegido", "Valoración inicial", "Seguimiento personalizado", "Recomendaciones de cuidado en casa"],
+    idealFor: ["Mantenimiento", "Primera vez", "Resultados graduales"],
+    howToUse: "Agenda tus 6 sesiones con la frecuencia recomendada (2-3 por semana). Cada sesión se adapta a tu progreso.",
+    tags: ["Popular", "Corporal", "Facial"],
+    featured: true,
+  },
+  {
+    id: "pk2", slug: "plan-intensivo-8",
+    title: "Plan Intensivo",
+    sessionsCount: 8,
+    priceDisplay: "Consultar precio",
+    savingsDisplay: "Ahorras hasta un 20%",
+    includes: ["8 sesiones del servicio elegido", "Valoración inicial + intermedia", "Plan de cuidado personalizado", "1 sesión de add-on gratis"],
+    idealFor: ["Resultados visibles", "Reducción", "Celulitis moderada"],
+    howToUse: "8 sesiones con frecuencia óptima. Incluye valoración a mitad del plan para ajustar protocolo.",
+    tags: ["Recomendado", "Corporal"],
+    featured: true,
+  },
+  {
+    id: "pk3", slug: "plan-transformacion-12",
+    title: "Plan Transformación",
+    sessionsCount: 12,
+    priceDisplay: "Consultar precio",
+    savingsDisplay: "Ahorras hasta un 30%",
+    includes: ["12 sesiones del servicio elegido", "Valoración completa (inicio, mitad, final)", "Plan nutricional básico", "2 sesiones de add-on gratis", "Fotos de progreso"],
+    idealFor: ["Transformación completa", "Reducción significativa", "Preparación evento importante"],
+    howToUse: "12 sesiones con protocolo personalizado. Seguimiento completo con fotos y medidas en cada etapa.",
+    tags: ["Máximo ahorro", "Corporal"],
+    featured: true,
+  },
+];
